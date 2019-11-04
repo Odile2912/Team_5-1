@@ -1,0 +1,41 @@
+#pragma once
+#include <random>
+#include <vector>
+#include <algorithm>
+
+/*! \class RandomNumbers
+  This is a random number class based on standard c++-11 generators.
+
+  This headers declares the global variable \ref main.cpp "_RNG", a pointer to the unique instance of this class.
+ */
+
+class RandomNumbers {
+
+public:
+/*! @name Initializing
+  The generator \ref rng is a Mersenne twister *mt19937* engine. 
+
+  A seed *s>0* can be provided, by default it is seeded with a *random_device*.
+ */
+///@{
+    RandomNumbers(unsigned long int s=0);
+///@}
+
+/*! @name Distributions
+  These functions return a single number distributed 
+  according the specified distributions. 
+
+  The additional parameters are the standard parameters of these distributions.
+ */
+///@{
+    double uniform_double(double lower=0, double upper=1);
+    double exponential(double mean=1);
+///@}
+     
+private:
+    std::mt19937 rng;
+    long int seed;
+
+};
+
+extern RandomNumbers* _RNG;
